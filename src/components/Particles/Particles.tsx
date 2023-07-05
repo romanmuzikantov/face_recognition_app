@@ -27,7 +27,7 @@ const CustomParticles = () => {
                           quantity: 4,
                       },
                       repulse: {
-                          distance: 110,
+                          distance: 90,
                           duration: 0.3,
                       },
                   },
@@ -61,7 +61,7 @@ const CustomParticles = () => {
                           enable: true,
                           area: 800,
                       },
-                      value: 90,
+                      value: 100,
                   },
                   opacity: {
                       value: 0.5,
