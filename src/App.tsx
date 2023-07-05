@@ -29,12 +29,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App flex flex-column">
+      <div className="App flex flex-column" style={{gap: '24px'}}>
         <Navigation />
-        <div className='flex flex-column' style={{gap: '24px', flex: '1'}}>
-          <Rank />
-          <ImageLinkForm onInputChange={this.onInputChange} onFormSubmit={this.onFormSubmit} />
-        </div>
+        <ImageLinkForm onInputChange={this.onInputChange} onFormSubmit={this.onFormSubmit} />
         <CustomParticles />
       </div>
     );
