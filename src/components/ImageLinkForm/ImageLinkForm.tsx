@@ -1,4 +1,5 @@
 import React, { BaseSyntheticEvent } from "react";
+import './ImageLinkForm.css'
 
 interface ImageLinkFormProps {
     onInputChange: (event: BaseSyntheticEvent) => void
@@ -7,7 +8,7 @@ interface ImageLinkFormProps {
 
 const ImageLinkForm = ({ onInputChange, onFormSubmit }: ImageLinkFormProps) => {
     return (
-        <div className="br2 bg-white-70 shadow-1 w-50 pa4 center z-9999 ba b--black">
+        <div className="w-50 pa4 center z-9999 ba b--black form-card">
             <p className="f4 mt0 mb4">
                 {'This Magic Brain will detect faces in images. Give it a try!'}
             </p>
