@@ -2,7 +2,7 @@ import React from "react";
 
 const ImageLinkForm = () => {
     return (
-        <div className="br2 bg-white-70 shadow-2 w-50 pa4 center">
+        <div className="br2 bg-white-70 shadow-1 w-50 pa4 center z-9999">
             <p className="f4 mt0 mb4">
                 {'This Magic Brain will detect faces in images. Give it a try!'}
             </p>
