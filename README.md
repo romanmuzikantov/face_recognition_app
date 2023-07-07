@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# SmartBrain
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Small React app which integrates a face recognition capability in given images with the help of the Clarifai API.
 
 ## Available Scripts
 
