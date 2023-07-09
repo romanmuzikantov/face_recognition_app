@@ -10,7 +10,7 @@ const APP_ID = 'my-first-application-3qhpcm';
 const MODEL_ID = 'face-detection';
 const MODEL_VERSION_ID = '6dc7e46bc9124c5c8824be4822abe105';
 
-async function FindFacesInImage(imageUrl: string) {
+async function FindFacesInImage(imageUrl: string): Promise<ClarifaiFaceDetectionResponse> {
     const raw = JSON.stringify({
         user_app_id: {
             user_id: USER_ID,
@@ -44,7 +44,7 @@ async function FindFacesInImage(imageUrl: string) {
     const responseModel: ClarifaiFaceDetectionResponse = JSON.parse(
         JSON.stringify(json.outputs[0])
     );
-    console.log(responseModel.input.data.image.url);
+    return responseModel;
 }
 
 export default FindFacesInImage;
