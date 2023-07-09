@@ -3,6 +3,7 @@ import './App.css';
 import Navigation from './components/Navigation/Navigation';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import CustomParticles from './components/Particles/Particles';
+import FindFacesInImage from './network/ClarifaiApi';
 
 interface AppState {
     input: string;
@@ -18,12 +19,11 @@ class App extends Component {
     }
 
     onInputChange = (event: BaseSyntheticEvent) => {
-        console.log(event.target.value);
-        console.log((this.state as AppState).input);
+        (this.state as AppState).input = event.target.value;
     };
 
-    onFormSubmit = () => {
-        console.log(this.state);
+    onFormSubmit = async () => {
+        await FindFacesInImage((this.state as AppState).input);
     };
 
     render() {
