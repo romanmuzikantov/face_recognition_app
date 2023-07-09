@@ -7,19 +7,22 @@ import FindFacesInImage from './network/ClarifaiApi';
 import ImageContainer from './components/ImageContainer/ImageContainer';
 import { BoundingBox } from './models/ClarifaiFaceDetectionResponse';
 
+interface AppProps {}
+
 interface AppState {
     input: string;
     imageUrl: string;
     boundingBoxes: BoundingBox[];
 }
 
-class App extends Component {
-    constructor(props: any) {
+class App extends Component<AppProps, AppState> {
+    constructor(props: AppProps) {
         super(props);
 
         this.state = {
             input: '',
             imageUrl: '',
+            boundingBoxes: [],
         };
     }
 
@@ -28,8 +31,8 @@ class App extends Component {
     };
 
     onFormSubmit = async () => {
-        const userInput = (this.state as AppState).input;
-        const response = await FindFacesInImage(userInput);
+        const { input } = this.state;
+        const response = await FindFacesInImage(input);
         this.setState({
             imageUrl: response.input.data.image.url,
             boundingBoxes: response.data.regions.map((region) => region.region_info.bounding_box),
@@ -37,6 +40,7 @@ class App extends Component {
     };
 
     render() {
+        const { imageUrl, boundingBoxes } = this.state;
         return (
             <div className="App flex flex-column" style={{ gap: '24px' }}>
                 <Navigation />
@@ -44,10 +48,7 @@ class App extends Component {
                     onInputChange={this.onInputChange}
                     onFormSubmit={this.onFormSubmit}
                 />
-                <ImageContainer
-                    imageUrl={(this.state as AppState).imageUrl}
-                    boundingBoxes={(this.state as AppState).boundingBoxes}
-                />
+                <ImageContainer imageUrl={imageUrl} boundingBoxes={boundingBoxes} />
                 <CustomParticles />
             </div>
         );
