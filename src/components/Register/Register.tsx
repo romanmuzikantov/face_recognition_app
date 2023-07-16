@@ -1,13 +1,13 @@
 import React from 'react';
 
-interface SignInProps {
-    navToRegisterClicked: () => void;
+interface RegisterProps {
+    navToSignInForm: () => void;
 }
 
-function SignIn({ navToRegisterClicked }: SignInProps): JSX.Element {
+function Register({ navToSignInForm }: RegisterProps): JSX.Element {
     return (
         <div className="flex flex-column" style={{ gap: '48px' }}>
-            <div className="f2">Sign In</div>
+            <div className="f2">Register</div>
             <div className="flex flex-column" style={{ gap: '16px' }}>
                 <div className="flex flex-column items-start" style={{ gap: '8px' }}>
                     <div>Username</div>
@@ -21,13 +21,13 @@ function SignIn({ navToRegisterClicked }: SignInProps): JSX.Element {
             <div className="flex flex-column" style={{ gap: '8px' }}>
                 <div>
                     <button type="submit" className="w-100 h2">
-                        Sign In
+                        Register
                     </button>
                 </div>
                 <div>Or</div>
                 <div>
-                    <button type="submit" className="w-100 h2" onClick={navToRegisterClicked}>
-                        Register
+                    <button type="submit" className="w-100 h2" onClick={navToSignInForm}>
+                        Already have an account ?
                     </button>
                 </div>
             </div>
@@ -35,4 +35,4 @@ function SignIn({ navToRegisterClicked }: SignInProps): JSX.Element {
     );
 }
 
-export default SignIn;
+export default Register;

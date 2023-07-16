@@ -6,7 +6,7 @@ import CustomParticles from './components/Particles/Particles';
 import FindFacesInImage from './network/ClarifaiApi';
 import ImageContainer from './components/ImageContainer/ImageContainer';
 import { BoundingBox } from './models/ClarifaiFaceDetectionResponse';
-import SignIn from './components/SignIn/SignIn';
+import SignForm from './components/SignForm/SignForm';
 
 interface AppProps {}
 
@@ -48,7 +48,7 @@ class App extends Component<AppProps, AppState> {
             <div className="App flex flex-column" style={{ gap: '24px' }}>
                 <Navigation isSignedIn={route === 'home'} />
                 {route === 'signin' ? (
-                    <SignIn />
+                    <SignForm />
                 ) : (
                     <div>
                         <ImageLinkForm
