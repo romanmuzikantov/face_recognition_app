@@ -6,6 +6,7 @@ import CustomParticles from './components/Particles/Particles';
 import FindFacesInImage from './network/ClarifaiApi';
 import ImageContainer from './components/ImageContainer/ImageContainer';
 import { BoundingBox } from './models/ClarifaiFaceDetectionResponse';
+import SignIn from './components/SignIn/SignIn';
 
 interface AppProps {}
 
@@ -13,6 +14,7 @@ interface AppState {
     input: string;
     imageUrl: string;
     boundingBoxes: BoundingBox[];
+    route: string;
 }
 
 class App extends Component<AppProps, AppState> {
@@ -23,6 +25,7 @@ class App extends Component<AppProps, AppState> {
             input: '',
             imageUrl: '',
             boundingBoxes: [],
+            route: 'signin',
         };
     }
 
@@ -40,15 +43,21 @@ class App extends Component<AppProps, AppState> {
     };
 
     render() {
-        const { imageUrl, boundingBoxes } = this.state;
+        const { imageUrl, boundingBoxes, route } = this.state;
         return (
             <div className="App flex flex-column" style={{ gap: '24px' }}>
-                <Navigation />
-                <ImageLinkForm
-                    onInputChange={this.onInputChange}
-                    onFormSubmit={this.onFormSubmit}
-                />
-                <ImageContainer imageUrl={imageUrl} boundingBoxes={boundingBoxes} />
+                <Navigation isSignedIn={route === 'home'} />
+                {route === 'signin' ? (
+                    <SignIn />
+                ) : (
+                    <div>
+                        <ImageLinkForm
+                            onInputChange={this.onInputChange}
+                            onFormSubmit={this.onFormSubmit}
+                        />
+                        <ImageContainer imageUrl={imageUrl} boundingBoxes={boundingBoxes} />
+                    </div>
+                )}
                 <CustomParticles />
             </div>
         );

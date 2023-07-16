@@ -3,7 +3,11 @@ import Tilt from 'react-parallax-tilt';
 import Brain from './brain.png';
 import './Navigation.css';
 
-function Navigation(): JSX.Element {
+interface NavigationProps {
+    isSignedIn: boolean;
+}
+
+function Navigation({ isSignedIn }: NavigationProps): JSX.Element {
     return (
         <nav className="flex justify-between items-center z-9999 navigation pt3-l pb3-l pt2-ns pb2-ns pl4-l pl3-ns pr4-l pr3-ns mt3 mr4-l mr3-ns ml4-l ml3-ns br4">
             <div className="flex items-center" style={{ gap: '24px' }}>
@@ -17,9 +21,13 @@ function Navigation(): JSX.Element {
                 </Tilt>
                 <p className="f3 ma0">SmartBrain</p>
             </div>
-            <p className="f4 black link pa3 pointer outline br4 ma0 bg-animate hover-bg-white-80 shadow-hover">
-                Sign Out
-            </p>
+            {isSignedIn ? (
+                <p className="f4 black link pa3 pointer outline br4 ma0 bg-animate hover-bg-white-80 shadow-hover">
+                    Sign Out
+                </p>
+            ) : (
+                <span />
+            )}
         </nav>
     );
 }
