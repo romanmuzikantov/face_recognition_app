@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import { BoundingBox } from '../../models/ClarifaiFaceDetectionResponse';
 import './ImageContainer.css';
+import { BoundingBox } from '../../models/PostImageResponse';
 
 interface ImageContainerProps {
     imageUrl: string;
@@ -8,7 +8,6 @@ interface ImageContainerProps {
 }
 
 function ImageContainer({ imageUrl, boundingBoxes }: ImageContainerProps): JSX.Element {
-    console.log(boundingBoxes);
     const ref: React.MutableRefObject<HTMLCanvasElement | null> = useRef(null);
 
     useEffect(() => {
@@ -20,10 +19,10 @@ function ImageContainer({ imageUrl, boundingBoxes }: ImageContainerProps): JSX.E
                 context.strokeStyle = '#ff4136';
 
                 boundingBoxes.forEach((val) => {
-                    const xPos = val.left_col * context.canvas.width;
-                    const yPos = val.top_row * context.canvas.height;
-                    const width = val.right_col * context.canvas.width - xPos;
-                    const height = val.bottom_row * context.canvas.height - yPos;
+                    const xPos = val.leftColumn * context.canvas.width;
+                    const yPos = val.topRow * context.canvas.height;
+                    const width = val.rightColumn * context.canvas.width - xPos;
+                    const height = val.bottomRow * context.canvas.height - yPos;
 
                     context.strokeRect(xPos, yPos, width, height);
                 });

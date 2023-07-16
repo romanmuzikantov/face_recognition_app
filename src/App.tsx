@@ -3,10 +3,10 @@ import './App.css';
 import Navigation from './components/Navigation/Navigation';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import CustomParticles from './components/Particles/Particles';
-import FindFacesInImage from './network/ClarifaiApi';
 import ImageContainer from './components/ImageContainer/ImageContainer';
-import { BoundingBox } from './models/ClarifaiFaceDetectionResponse';
 import SignForm from './components/SignForm/SignForm';
+import { BoundingBox } from './models/PostImageResponse';
+import FindFacesInImage from './network/ImageRepository';
 
 interface AppProps {}
 
@@ -35,10 +35,12 @@ class App extends Component<AppProps, AppState> {
 
     onFormSubmit = async () => {
         const { input } = this.state;
+        this.setState({
+            imageUrl: input,
+        });
         const response = await FindFacesInImage(input);
         this.setState({
-            imageUrl: response.input.data.image.url,
-            boundingBoxes: response.data.regions.map((region) => region.region_info.bounding_box),
+            boundingBoxes: response.boundingBoxes,
         });
     };
 
