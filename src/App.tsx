@@ -25,7 +25,7 @@ class App extends Component<AppProps, AppState> {
             input: '',
             imageUrl: '',
             boundingBoxes: [],
-            route: 'signin',
+            route: '',
         };
     }
 
@@ -52,7 +52,7 @@ class App extends Component<AppProps, AppState> {
                 {route === 'signin' ? (
                     <SignForm />
                 ) : (
-                    <div>
+                    <div className="flex flex-column" style={{ gap: '24px' }}>
                         <ImageLinkForm
                             onInputChange={this.onInputChange}
                             onFormSubmit={this.onFormSubmit}

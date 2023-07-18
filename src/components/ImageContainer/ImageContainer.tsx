@@ -32,9 +32,9 @@ function ImageContainer({ imageUrl, boundingBoxes }: ImageContainerProps): JSX.E
 
     return (
         <div className="flex justify-center">
-            <div className="z-9999 ml3 mr3 canvas-container">
+            <div className="z-9999 ml3 mr3 canvas-container w-50-l w-100-ns">
                 <canvas ref={ref} className="canvas" />
-                <img alt="" src={imageUrl} />
+                <img alt="" src={imageUrl} className="w50" />
             </div>
         </div>
     );
