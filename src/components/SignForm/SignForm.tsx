@@ -3,7 +3,12 @@ import './SignForm.css';
 import SignIn from '../SignIn/SignIn';
 import Register from '../Register/Register';
 
-function SignForm(): JSX.Element {
+interface SignFormProps {
+    onRegisterFormSubmit: (login: string, password: string) => Promise<void>;
+    onLoginFormSubmit: (login: string, password: string) => Promise<void>;
+}
+
+function SignForm({ onRegisterFormSubmit, onLoginFormSubmit }: SignFormProps): JSX.Element {
     const [signingRoute, setSigninRoute] = useState('signIn');
 
     const navToRegisterForm = () => {
@@ -16,9 +21,15 @@ function SignForm(): JSX.Element {
     return (
         <div className="br4 z-9999 center ph6 pv5 main-container">
             {signingRoute === 'signIn' ? (
-                <SignIn navToRegisterClicked={navToRegisterForm} />
+                <SignIn
+                    navToRegisterClicked={navToRegisterForm}
+                    onLoginFormSubmit={onLoginFormSubmit}
+                />
             ) : (
-                <Register navToSignInForm={navToSignInForm} />
+                <Register
+                    navToSignInForm={navToSignInForm}
+                    onRegisterFormSubmit={onRegisterFormSubmit}
+                />
             )}
         </div>
     );

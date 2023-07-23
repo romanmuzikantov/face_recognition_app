@@ -7,6 +7,9 @@ import ImageContainer from './components/ImageContainer/ImageContainer';
 import SignForm from './components/SignForm/SignForm';
 import { BoundingBox } from './models/PostImageResponse';
 import ImageReposistory from './network/ImageRepository';
+import UserRepository from './network/UserRepository';
+import { UserResponse } from './models/UserResponse';
+import { isError } from './models/ErrorModel';
 
 interface AppProps {}
 
@@ -15,6 +18,7 @@ interface AppState {
     imageUrl: string;
     boundingBoxes: BoundingBox[];
     route: string;
+    currentUser: UserResponse | undefined;
 }
 
 class App extends Component<AppProps, AppState> {
@@ -26,6 +30,7 @@ class App extends Component<AppProps, AppState> {
             imageUrl: '',
             boundingBoxes: [],
             route: 'signin',
+            currentUser: undefined,
         };
     }
 
@@ -44,18 +49,48 @@ class App extends Component<AppProps, AppState> {
         });
     };
 
+    onRegisterFormSubmit = async (login: string, password: string) => {
+        const response = await UserRepository.RegisterUser(login, password);
+
+        if (isError(response)) {
+            return;
+        }
+
+        this.setState({
+            currentUser: response,
+            route: 'index',
+        });
+    };
+
+    onLoginFormSubmit = async (login: string, password: string) => {
+        const response = await UserRepository.LoginUser(login, password);
+
+        if (isError(response)) {
+            return;
+        }
+
+        this.setState({
+            currentUser: response,
+            route: 'index',
+        });
+    };
+
     render() {
-        const { imageUrl, boundingBoxes, route } = this.state;
+        const { imageUrl, boundingBoxes, route, currentUser } = this.state;
         return (
             <div className="App flex flex-column" style={{ gap: '24px' }}>
                 <Navigation isSignedIn={route === 'home'} />
                 {route === 'signin' ? (
-                    <SignForm />
+                    <SignForm
+                        onRegisterFormSubmit={this.onRegisterFormSubmit}
+                        onLoginFormSubmit={this.onLoginFormSubmit}
+                    />
                 ) : (
                     <div className="flex flex-column" style={{ gap: '24px' }}>
                         <ImageLinkForm
                             onInputChange={this.onInputChange}
                             onFormSubmit={this.onImageFormSubmit}
+                            currentUser={currentUser!}
                         />
                         <ImageContainer imageUrl={imageUrl} boundingBoxes={boundingBoxes} />
                     </div>

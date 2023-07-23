@@ -1,18 +1,24 @@
 import React, { BaseSyntheticEvent } from 'react';
 import './ImageLinkForm.css';
 import Rank from '../Rank/Ranks';
+import { UserResponse } from '../../models/UserResponse';
 
 interface ImageLinkFormProps {
     onInputChange: (event: BaseSyntheticEvent) => void;
     onFormSubmit: () => void;
+    currentUser: UserResponse;
 }
 
-function ImageLinkForm({ onInputChange, onFormSubmit }: ImageLinkFormProps): JSX.Element {
+function ImageLinkForm({
+    onInputChange,
+    onFormSubmit,
+    currentUser,
+}: ImageLinkFormProps): JSX.Element {
     return (
         <div className="flex w-100 justify-center">
             <div className="w-50-l w-100-ns pa4 z-9999 ml3-ns mr3-ns br4 form-card">
                 <div className="flex flex-column" style={{ gap: '24px' }}>
-                    <Rank />
+                    <Rank currentUser={currentUser} />
                     <p className="f4 mt0 mb4">
                         This Magic Brain will detect faces in images. Give it a try!
                     </p>
