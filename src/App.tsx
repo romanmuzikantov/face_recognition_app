@@ -6,7 +6,7 @@ import CustomParticles from './components/Particles/Particles';
 import ImageContainer from './components/ImageContainer/ImageContainer';
 import SignForm from './components/SignForm/SignForm';
 import { BoundingBox } from './models/PostImageResponse';
-import FindFacesInImage from './network/ImageRepository';
+import ImageReposistory from './network/ImageRepository';
 
 interface AppProps {}
 
@@ -25,7 +25,7 @@ class App extends Component<AppProps, AppState> {
             input: '',
             imageUrl: '',
             boundingBoxes: [],
-            route: '',
+            route: 'signin',
         };
     }
 
@@ -33,12 +33,12 @@ class App extends Component<AppProps, AppState> {
         this.setState({ input: event.target.value });
     };
 
-    onFormSubmit = async () => {
+    onImageFormSubmit = async () => {
         const { input } = this.state;
         this.setState({
             imageUrl: input,
         });
-        const response = await FindFacesInImage(input);
+        const response = await ImageReposistory.FindFacesInImage(input);
         this.setState({
             boundingBoxes: response.boundingBoxes,
         });
@@ -55,7 +55,7 @@ class App extends Component<AppProps, AppState> {
                     <div className="flex flex-column" style={{ gap: '24px' }}>
                         <ImageLinkForm
                             onInputChange={this.onInputChange}
-                            onFormSubmit={this.onFormSubmit}
+                            onFormSubmit={this.onImageFormSubmit}
                         />
                         <ImageContainer imageUrl={imageUrl} boundingBoxes={boundingBoxes} />
                     </div>
