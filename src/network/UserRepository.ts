@@ -1,4 +1,5 @@
 import { ErrorResponse } from '../models/ErrorModel';
+import { IncrementResponse } from '../models/IncrementResponse';
 import { UserResponse } from '../models/UserResponse';
 
 class UserRepository {
@@ -58,6 +59,32 @@ class UserRepository {
         }
 
         const responseModel: UserResponse = JSON.parse(JSON.stringify(json));
+        return responseModel;
+    }
+
+    static async IncrementUserEntries(userId: number): Promise<IncrementResponse | undefined> {
+        const raw = JSON.stringify({
+            userId,
+        });
+
+        const requestOptions = {
+            method: 'PUT',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+            },
+            body: raw,
+        };
+
+        const response = await fetch(`http://localhost:3001/entries`, requestOptions);
+        const json = await response.json();
+
+        if (response.status < 200 || response.status >= 400) {
+            return undefined;
+        }
+
+        const responseModel: IncrementResponse = JSON.parse(JSON.stringify(json));
         return responseModel;
     }
 }

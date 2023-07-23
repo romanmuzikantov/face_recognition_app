@@ -39,7 +39,7 @@ class App extends Component<AppProps, AppState> {
     };
 
     onImageFormSubmit = async () => {
-        const { input } = this.state;
+        const { input, currentUser } = this.state;
         this.setState({
             imageUrl: input,
         });
@@ -47,6 +47,21 @@ class App extends Component<AppProps, AppState> {
         this.setState({
             boundingBoxes: response.boundingBoxes,
         });
+
+        if (currentUser !== undefined) {
+            const incrementResponse = await UserRepository.IncrementUserEntries(currentUser.id);
+
+            if (incrementResponse !== undefined && incrementResponse.entries !== 0) {
+                this.setState({
+                    currentUser: {
+                        id: currentUser.id,
+                        username: currentUser.username,
+                        entries: incrementResponse.entries,
+                        joined: currentUser.joined,
+                    },
+                });
+            }
+        }
     };
 
     onRegisterFormSubmit = async (login: string, password: string) => {
