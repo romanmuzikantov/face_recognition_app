@@ -22,7 +22,10 @@ class UserRepository {
             body: raw,
         };
 
-        const response = await fetch(`http://localhost:3001/register`, requestOptions);
+        const response = await fetch(
+            `https://face-recognition-backend.fly.dev/register`,
+            requestOptions
+        );
         const json = await response.json();
 
         if (response.status < 200 || response.status >= 400) {
@@ -50,7 +53,10 @@ class UserRepository {
             body: raw,
         };
 
-        const response = await fetch(`http://localhost:3001/login`, requestOptions);
+        const response = await fetch(
+            `https://face-recognition-backend.fly.dev/login`,
+            requestOptions
+        );
         const json = await response.json();
 
         if (response.status < 200 || response.status >= 400) {
@@ -77,7 +83,10 @@ class UserRepository {
             body: raw,
         };
 
-        const response = await fetch(`http://localhost:3001/entries`, requestOptions);
+        const response = await fetch(
+            `https://face-recognition-backend.fly.dev/entries`,
+            requestOptions
+        );
         const json = await response.json();
 
         if (response.status < 200 || response.status >= 400) {

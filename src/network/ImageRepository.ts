@@ -16,7 +16,10 @@ class ImageReposistory {
             body: raw,
         };
 
-        const response = await fetch(`http://localhost:3001/image`, requestOptions);
+        const response = await fetch(
+            `https://face-recognition-backend.fly.dev/image`,
+            requestOptions
+        );
         const json = await response.json();
         const responseModel: PostImageResponse = JSON.parse(JSON.stringify(json));
         return responseModel;
