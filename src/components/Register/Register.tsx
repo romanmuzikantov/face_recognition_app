@@ -30,7 +30,11 @@ function Register({ navToSignInForm, onRegisterFormSubmit }: RegisterProps): JSX
                 </div>
                 <div className="flex flex-column items-start" style={{ gap: '8px' }}>
                     <div>Password</div>
-                    <input className="br2 ba b--black-50 pa1" onChange={onPasswordInputChange} />
+                    <input
+                        className="br2 ba b--black-50 pa1"
+                        type="password"
+                        onChange={onPasswordInputChange}
+                    />
                 </div>
             </div>
             <div className="flex flex-column" style={{ gap: '8px' }}>
