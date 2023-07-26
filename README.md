@@ -2,6 +2,8 @@
 
 Small React app which integrates a face recognition capability in given images with the help of the Clarifai API.
 
+The NodeJS backend that is used with this application can be found in this [repository](https://github.com/romanmuzikantov/face_recognition_backend).
+
 ## Available Scripts
 
 In the project directory, you can run:
