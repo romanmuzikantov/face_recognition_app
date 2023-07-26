@@ -4,6 +4,8 @@ Small React app which integrates a face recognition capability in given images w
 
 The NodeJS backend that is used with this application can be found in this [repository](https://github.com/romanmuzikantov/face_recognition_backend).
 
+You can find a demo here: [https://romanmuzikantov.github.io/face_recognition_app/](https://romanmuzikantov.github.io/face_recognition_app/)
+
 ## Available Scripts
 
 In the project directory, you can run:
